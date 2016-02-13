@@ -41,13 +41,13 @@
 
 - `touch  ~/.bashrc`
 
-##### Run the command
-
-> Replace **YOUR_ALIAS** with your alias of choice  
-> Replace the **USERNAME** and **IP** with your server credentials.
-
-- `echo "alias YOUR_ALIAS='ssh USERNAME@IP -i ~/.ssh/id_rsa'" >> ~/.bashrc`
-- `source ~/.bashrc`
+  ##### Run the command
+  
+  > Replace **YOUR_ALIAS** with your alias of choice  
+  > Replace the **USERNAME** and **IP** with your server credentials.
+  
+  - `echo "alias YOUR_ALIAS='ssh USERNAME@IP -i ~/.ssh/id_rsa'" >> ~/.bashrc`
+  - `source ~/.bashrc`
 
 #### Connect
 
