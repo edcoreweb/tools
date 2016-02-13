@@ -59,6 +59,11 @@
 > Replace **XDEBUG_LIBRARY_PATH** with path found by `find / -name 'xdebug.so' 2> /dev/null`  
 > Replace **WINDOWS_LOCAL_IP** with your windows local ip (**cmd** `ipconfig`).
 
+
+## Restart apache
+
+- `sudo service apache2 restart`
+
 ### Get debugging
 
 - Open up your PHPStorm project
