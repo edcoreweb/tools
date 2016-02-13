@@ -36,7 +36,7 @@
 
 #### Create a bash alias for your SSH connection
 
-> Make sure that **~/.bashrc** file exist on your Windows machine.  
+> Make sure that the **~/.bashrc** file exists on your Windows machine.  
 > If not create it.
 
 - `touch  ~/.bashrc`
