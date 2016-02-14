@@ -32,7 +32,7 @@
 - `xdebug.default_enable = 1`  
 - `xdebug.idekey = "PHPSTORM"`  
 - `xdebug.remote_enable = 1`  
-- `xdebug.remote_autostart = 1`  
+- `xdebug.remote_autostart = 0`  
 - `xdebug.remote_port = 9000`  
 - `xdebug.remote_handler=dbgp`  
 - `xdebug.remote_log="/var/log/xdebug/xdebug.log"`  
@@ -50,7 +50,7 @@
 - `xdebug.default_enable = 1`  
 - `xdebug.idekey = "PHPSTORM"`  
 - `xdebug.remote_enable = 1`  
-- `xdebug.remote_autostart = 1`  
+- `xdebug.remote_autostart = 0`  
 - `xdebug.remote_port = 9000`  
 - `xdebug.remote_handler=dbgp`  
 - `xdebug.remote_log="/var/log/xdebug/xdebug.log"`  
@@ -67,6 +67,8 @@
 ### Get debugging
 
 - Open up your PHPStorm project
+- Install Google Chrome [extension](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?hl=en)  
+- Activate debug session from extension
 - Activate **Start Listening for PHP Debug Connections** from the **Run** menu
 - Set a breakpoint
 - Navigate to the respective page
