@@ -6,7 +6,7 @@
 
 > Where:  
 
-- `SHARED_WINDOWS_FOLDER` is your windows shared folder : it could be `\\MYPC\vhosts`  
+- `SHARED_WINDOWS_FOLDER` is your windows shared folder : it could be `//MYPC/vhosts`  
 - `PATH_TO_LINUX_FOLDER` is the folder where you want to mount : it could be `/var/www/vhosts`  
 - `PATH_TO_CREDENTIALS` is the path to your credentials file to access the share (your windows user and password) it cold be `~/credentials`
 
