@@ -23,7 +23,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ss
 ```  
 
 
-> When you hit "ENTER", you will be asked a number of questions.    
+When you hit "ENTER", you will be asked a number of questions.    
 
 
 ```
@@ -42,7 +42,7 @@ Email Address [] : your_email@domain.com
 sudo vim /etc/apache2/sites-available/default-ssl.conf
 ```
 
-> Add the following lines to your vhosts entries or your default vhost:
+Add the following lines to your vhosts entries or your default vhost:
 
 ```
 <VirtualHost _default_:443>
@@ -65,7 +65,7 @@ sudo update-ca-certificates
 sudo vim /etc/apache2/sites-available/000-default.conf
 ```
 
-> Add the following lines.
+Add the following lines.
 
 ```
 <VirtualHost *:80>
@@ -77,4 +77,4 @@ sudo vim /etc/apache2/sites-available/000-default.conf
 
 ### Done
 
-> You have installed a self-signed SSL certificate for witch curl work without setting the verify option to false. 
+You have installed a self-signed SSL certificate for witch curl work without setting the verify option to false. 
