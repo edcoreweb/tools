@@ -2,7 +2,6 @@
 
 To create a self-signed SSL certificate for your localhost enviroment you must do the follwing:
 
-> Run the following commands :  
 
 ```
 sudo apt-get update
