@@ -5,6 +5,7 @@ To create a self-signed SSL certificate for your localhost enviroment you must d
 
 ```
 sudo apt-get update
+sudo apt-get install ca-certificates
 ```
 
 ### Activate the SSL Module
@@ -67,12 +68,6 @@ openssl genrsa -out local.dev.key 2048
 openssl req -sha256 -new -key local.dev.key -out local.dev.csr
 ```
 
-#### Sign the request with your root key
-
-```
-openssl x509 -sha256 -req -in local.dev.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out local.dev.crt -days 7300
-```
-
 When you hit "ENTER", you will be asked a number of questions.    
 
 ```
@@ -85,7 +80,13 @@ Common Name (e.g. server FQDN or YOUR name) [] : *.local.dev
 Email Address [] : your_email@domain.com
 ```
 
-#### Veryfy the certificate:
+#### Sign the request with your root key
+
+```
+openssl x509 -sha256 -req -in local.dev.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out local.dev.crt -days 7300
+```
+
+#### Verify the certificate:
 
 ```
 openssl verify -CAfile ca.crt local.dev.crt
@@ -107,14 +108,6 @@ Add the following lines to your vhosts entries or your default vhost:
     SSLCertificateFile /etc/apache2/ssl/local.dev.crt
     SSLCertificateKeyFile /etc/apache2/ssl/local.dev.key
 </VirtualHost>
-```
-
-### Registering the cretificate in the system to be trusted by curl.
-
-```
-sudo apt-get install ca-certificates
-sudo cp /etc/apache2/ssl/apache.crt /usr/local/share/ca-certificates/
-sudo update-ca-certificates
 ```
 
 ### (Optional) Redirecting all traffic to HTTPS.
