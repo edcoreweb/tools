@@ -14,14 +14,24 @@ sudo a2enmod ssl
 sudo service apache2 restart
 ```
 
-### Create a Self-Signed SSL Certificate
-
+### Set the alterantive names
 
 ```
-sudo mkdir /etc/apache2/ssl
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+sudo vim /etc/ssl/openssl.cnf
 ```  
 
+Modify the following lines under **[v3_ca]**
+```
+# Include email address in subject alt name: another PKIX recommendation
+subjectAltName=DNS:*.local.revenew.nl, DNS:*.local.dev, DNS:*.local.com, DNS:*.dev, DNS:192.168.1.2
+```  
+
+### Generate the root authority (this is required to sign the other certificates and will be added to the trusted root)
+
+```
+openssl genrsa -aes256 -out ca.key 2048
+openssl req -new -x509 -days 7300 -key ca.key -sha256 -extensions v3_ca -out ca.crt
+```
 
 When you hit "ENTER", you will be asked a number of questions.    
 
@@ -32,13 +42,61 @@ State or Province Name (full name) [Some-State] : New York
 Locality Name (eg, city) [] : New York City
 Organization Name (eg, company) [Internet Widgits Pty Ltd] : Your Company
 Organizational Unit Name (eg, section) [] : Department of Kittens
-Common Name (e.g. server FQDN or YOUR name) [] : your_domain.com or *.subdomain.com for automated subdomains
+Common Name (e.g. server FQDN or YOUR name) [] : *
+Email Address [] : your_email@domain.com
+```  
+
+### Add the root authority to the trusted certificates
+
+```
+sudo cp ca.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
+```  
+
+### Create a Self-Signed SSL Certificate
+
+#### Generate the domain key:
+
+```
+openssl genrsa -out local.dev.key 2048
+```
+
+#### Generate the certificate signing request
+
+```
+openssl req -sha256 -new -key local.dev.key -out local.dev.csr
+```
+
+#### Sign the request with your root key
+
+```
+openssl x509 -sha256 -req -in local.dev.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out local.dev.crt -days 7300
+```
+
+When you hit "ENTER", you will be asked a number of questions.    
+
+```
+Country Name (2 letter code) [AU] : US
+State or Province Name (full name) [Some-State] : New York
+Locality Name (eg, city) [] : New York City
+Organization Name (eg, company) [Internet Widgits Pty Ltd] : Your Company
+Organizational Unit Name (eg, section) [] : Department of Kittens
+Common Name (e.g. server FQDN or YOUR name) [] : *.local.dev
 Email Address [] : your_email@domain.com
 ```
+
+#### Veryfy the certificate:
+
+```
+openssl verify -CAfile ca.crt local.dev.crt
+```
+
 
 ### Configure Apache to Use SSL
 
 ```
+cp local.dev.crt /etc/apache2/ssl/local.dev.crt
+cp local.dev.key /etc/apache2/ssl/local.dev.key
 sudo vim /etc/apache2/sites-available/default-ssl.conf
 ```
 
@@ -46,8 +104,8 @@ Add the following lines to your vhosts entries or your default vhost:
 
 ```
 <VirtualHost _default_:443>
-    SSLCertificateFile /etc/apache2/ssl/apache.crt
-    SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+    SSLCertificateFile /etc/apache2/ssl/local.dev.crt
+    SSLCertificateKeyFile /etc/apache2/ssl/local.dev.key
 </VirtualHost>
 ```
 
@@ -77,4 +135,4 @@ Add the following lines.
 
 ### Done
 
-You have installed a self-signed SSL certificate for witch curl work without setting the verify option to false. 
+You have installed a self-signed SSL certificate for witch curl will work without setting the verify option to false. 
