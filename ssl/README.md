@@ -83,7 +83,7 @@ Email Address [] : your_email@domain.com
 #### Sign the request with your root key
 
 ```
-openssl x509 -sha256 -req -in local.dev.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out local.dev.crt -days 7300
+openssl x509 -sha256 -req -in local.dev.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out local.dev.crt -days 7300 -extfile /etc/ssl/openssl.cnf -extensions v3_ca
 ```
 
 #### Verify the certificate:
