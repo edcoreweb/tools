@@ -76,8 +76,8 @@ do
     #configure php defaults
     for file in "${php_ini_versions[@]}"
     do 
-	    #configure php defaults
-    	sudo sed -i -r \
+        #configure php defaults
+        sudo sed -i -r \
         -e '/^max_execution_time =/ c max_execution_time = 60' \
         -e '/^post_max_size =/ c post_max_size = 64M' \
         -e '/^;cgi.fix_pathinfo=/ c cgi.fix_pathinfo=0' \
