@@ -15,6 +15,7 @@ php_configs=( 5 1 1 3 )
 #php_configs=( 250 7 7 100 )
 
 php_versions=( "5.6" "7.1" "7.2" )
+php_ini_versions=( "fpm" "cli" )
 
 #install php
 sudo add-apt-repository ppa:ondrej/php -y
@@ -73,18 +74,22 @@ sudo curl -s -o /etc/php/cacert.pem  https://curl.haxx.se/ca/cacert.pem
 for version in "${php_versions[@]}"
 do
     #configure php defaults
-    sudo sed -i -r \
-    -e '/^max_execution_time =/ c max_execution_time = 60' \
-    -e '/^post_max_size =/ c post_max_size = 64M' \
-    -e '/^;cgi.fix_pathinfo=/ c cgi.fix_pathinfo=0' \
-    -e '/^upload_max_filesize =/ c upload_max_filesize = 64M' \
-    -e '/^;date.timezone =/ c date.timezone = "UTC"' \
-    -e '/^session.use_strict_mode =/ c session.use_strict_mode = 1' \
-    -e '/^session.gc_probability =/ c session.gc_probability = 100' \
-    -e '/^session.gc_maxlifetime =/ c session.gc_maxlifetime = 14400' \
-    -e '/^;curl.cainfo =/ c curl.cainfo = /etc/php/cacert.pem' \
-    -e '/^sendmail_path =/ c sendmail_path = /usr/sbin/sendmail -S mail:1025' \
-    /etc/php/${version}/fpm/php.ini
+    for file in "${php_ini_versions[@]}"
+    do 
+	    #configure php defaults
+    	sudo sed -i -r \
+        -e '/^max_execution_time =/ c max_execution_time = 60' \
+        -e '/^post_max_size =/ c post_max_size = 64M' \
+        -e '/^;cgi.fix_pathinfo=/ c cgi.fix_pathinfo=0' \
+        -e '/^upload_max_filesize =/ c upload_max_filesize = 64M' \
+        -e '/^;date.timezone =/ c date.timezone = "UTC"' \
+        -e '/^session.use_strict_mode =/ c session.use_strict_mode = 1' \
+        -e '/^session.gc_probability =/ c session.gc_probability = 100' \
+        -e '/^session.gc_maxlifetime =/ c session.gc_maxlifetime = 14400' \
+        -e '/^;curl.cainfo =/ c curl.cainfo = /etc/php/cacert.pem' \
+        -e '/^;sendmail_path =/ c sendmail_path = /usr/local/bin/mhsendmail' \
+        /etc/php/${version}/${file}/php.ini
+    done
 done
 
 #ensure session dir owned by same user as php
