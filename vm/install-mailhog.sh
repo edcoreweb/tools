@@ -11,7 +11,9 @@ sudo curl -O https://storage.googleapis.com/golang/go1.9.3.linux-amd64.tar.gz \
   && mkdir -p /root/gocode \
   && export GOPATH=/root/gocode \
   && go get github.com/mailhog/MailHog \
+  && go get github.com/mailhog/mhsendmail \
   && mv /root/gocode/bin/MailHog /usr/local/bin/mailhog \
+  && mv /root/gocode/bin/mhsendmail /usr/local/bin/mhsendmail \
   && rm -rf /root/gocode
 
 cat << EOF | sudo tee /etc/systemd/system/mailhog.service > /dev/null
