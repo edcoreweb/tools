@@ -9,8 +9,8 @@ apt-cache policy docker-ce
 sudo apt-get install -y docker-ce
 
 # non-sudo permissions
-sudo groupadd docker
 sudo usermod -aG docker $USER
+sudo su $USER
 
 [ ! -d "/home/$USER/.docker" ] && \
 sudo mkdir "/home/$USER/.docker"
