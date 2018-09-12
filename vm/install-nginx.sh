@@ -63,22 +63,22 @@ sudo service nginx restart
 
 #make web root
 [ ! -d "${HOME}/vhosts" ] && \
-mkdir "${HOME}/vhosts"
+sudo mkdir "${HOME}/vhosts"
 
 #ensure web root is under correct ownership (if running in vagrant with mapped public_html this can get created as root)
-sudo chown techcube:techcube "${HOME}/vhosts"
-chmod 0755 "${HOME}/vhosts"
+sudo chown $USER:$USER "${HOME}/vhosts"
+sudo chmod 0755 "${HOME}/vhosts"
 
 #set up log directory and public html root
 [ ! -d "${HOME}/vhosts/default" ] && \
-mkdir "${HOME}"/vhosts/default
+sudo mkdir "${HOME}"/vhosts/default
 
 [ ! -d "${HOME}/logs" ] && \
-mkdir "${HOME}"/logs
+sudo mkdir "${HOME}"/logs
 
 #make directory for Lets Encrypt (used later)
 [ ! -d "${HOME}/.well-known/acme-challenge" ] && \
-mkdir -p "${HOME}"/.well-known/acme-challenge
+sudo mkdir -p "${HOME}"/.well-known/acme-challenge
 
 #make sure web directory and file permissions are consistent
 sudo find "${HOME}"/vhosts/ -type d -not -perm 0755 -exec chmod 0755 '{}' \;
