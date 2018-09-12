@@ -11,6 +11,10 @@ sudo apt-get install -y docker-ce
 # non-sudo permissions
 sudo groupadd docker
 sudo usermod -aG docker $USER
+
+[ ! -d "/home/$USER/.docker" ] && \
+sudo mkdir "/home/$USER/.docker"
+
 sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
 sudo chmod g+rwx "/home/$USER/.docker" -R
 
