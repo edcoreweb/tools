@@ -9,7 +9,7 @@ set tabsize 4
 set tabstospaces
 EOF
 
-sudo add-apt-repository universe
+sudo add-apt-repository universe -y
 #it's like whack-a-mole trying to keep update and upgrade non-interactive.
 #This is the best attempt so far.
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y -q update
