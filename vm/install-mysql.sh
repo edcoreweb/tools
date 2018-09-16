@@ -8,7 +8,7 @@ echo "mysql-server-5.7 mysql-server/root_password_again password $MYSQL_ROOT_PAS
 sudo apt-get install -y mysql-server
 
 # Cleanup
-mysql -u root <<EOF
+sudo mysql -u root <<EOF
 UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE user = 'root';
 DELETE FROM mysql.user WHERE user = '';
 DELETE FROM mysql.user WHERE user = 'root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');

@@ -5,7 +5,7 @@
 start_seconds="$(date +%s)"
 
 #leave logfile name empty to show on screen instead
-LOGFILE=
+LOGFILE=provision.log
 #provision-log.log
 
 #logging
