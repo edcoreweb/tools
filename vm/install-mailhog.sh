@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
 # Install MailHog
-sudo curl -O https://storage.googleapis.com/golang/go1.9.3.linux-amd64.tar.gz \
+curl -O https://storage.googleapis.com/golang/go1.9.3.linux-amd64.tar.gz \
   && tar -xvf go1.9.3.linux-amd64.tar.gz \
   && rm -rf go1.9.3.linux-amd64.tar.gz \
-  && chown -R root:root ./go \
-  && mv go /usr/local \
-  && ln -fs /usr/local/go/bin/go /usr/bin \
-  && ln -fs /usr/bin/go /etc/alternatives \
-  && mkdir -p /root/gocode \
+  && sudo chown -R root:root ./go \
+  && sudo mv go /usr/local \
+  && sudo ln -fs /usr/local/go/bin/go /usr/bin \
+  && sudo ln -fs /usr/bin/go /etc/alternatives \
+  && sudo mkdir -p /root/gocode \
   && export GOPATH=/root/gocode \
-  && go get github.com/mailhog/MailHog \
-  && go get github.com/mailhog/mhsendmail \
-  && mv /root/gocode/bin/MailHog /usr/local/bin/mailhog \
-  && mv /root/gocode/bin/mhsendmail /usr/local/bin/mhsendmail \
-  && rm -rf /root/gocode
+  && sudo go get github.com/mailhog/MailHog \
+  && sudo go get github.com/mailhog/mhsendmail \
+  && sudo mv /root/gocode/bin/MailHog /usr/local/bin/mailhog \
+  && sudo mv /root/gocode/bin/mhsendmail /usr/local/bin/mhsendmail \
+  && sudo rm -rf /root/gocode
 
 cat << EOF | sudo tee /etc/systemd/system/mailhog.service > /dev/null
 [Unit]
