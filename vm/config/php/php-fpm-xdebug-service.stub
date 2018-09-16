@@ -1,0 +1,13 @@
+[Unit]
+Description=The PHP {version} FastCGI Process Manager (Xdebug)
+Documentation=man:php-fpm{version}(8)
+After=network.target
+
+[Service]
+Type=notify
+PIDFile=/run/php/php{version}-fpm-xdebug.pid
+ExecStart=/usr/sbin/php-fpm{version} --nodaemonize --fpm-config /etc/php/{version}/fpm/php-fpm.conf -d zend_extension=xdebug.so
+ExecReload=/bin/kill -USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target

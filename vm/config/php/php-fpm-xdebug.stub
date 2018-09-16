@@ -1,0 +1,16 @@
+[global]
+pid = /run/php/php{version}-fpm-xdebug.pid
+error_log = /var/log/php{version}-fpm-xdebug.log
+
+[www-xdebug]
+user = www-data
+group = www-data
+
+listen = /run/php/php7.1-fpm-xdebug.sock
+
+listen.owner = www-data
+listen.group = www-data
+
+pm = ondemand
+pm.max_children = 50
+pm.max_requests = 500

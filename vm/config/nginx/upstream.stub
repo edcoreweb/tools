@@ -1,0 +1,7 @@
+upstream php{version}-fpm {
+    server unix:/var/run/php/php{version}-fpm.sock;
+}
+
+upstream php{version}-fpm-xdebug {
+    server unix:/var/run/php/php{version}-fpm-xdebug.sock;
+}
