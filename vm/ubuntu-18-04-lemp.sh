@@ -32,12 +32,14 @@ end_seconds="$(date +%s)"
 echo "---------------------------------------------------------------------"
 echo "Provisioning complete in "$(( end_seconds - start_seconds ))" seconds"
 echo "Ubuntu server setup complete (Mysql 5.7, Nginx, PHP-FPM 7.1, PHP-FPM 5.6, PHP-FPM 7.2)."
+echo "You need to log of and on again for some settings to take affect (sudo su ${USER})"
 
 #logging: restore stdout/stderr (and close descriptors 6 and 7)
 if [ ! -z "${LOGFILE}" ]; then
 exec 1>&6 6>&-
 exec 2>&7 7>&-
 echo "Provision done. See ${LOGFILE} for details."
+echo "You need to log of and on again for some settings to take affect (sudo su ${USER})"
 fi
 
 #end
