@@ -45,7 +45,8 @@ sudo phpdismod -v ALL -s ALL xdebug
 for version in "${PHP_VERSIONS[@]}"
 do
     sudo rm /etc/php/${version}/fpm/pool.d/www.conf
-    sudo cp ./config/php/www.conf /etc/php/${version}/fpm/pool.d
+    sed "s/{version}/${version}/g" ./config/php/www.conf | sudo tee /etc/php/${version}/fpm/pool.d/www.conf > /dev/null
+
     sudo touch /etc/php/${version}/fpm/php-fpm-xdebug.conf /lib/systemd/system/${version}-fpm-xdebug.service
     sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug.stub | sudo tee /etc/php/${version}/fpm/php-fpm-xdebug.conf > /dev/null
     sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug-service.stub | sudo tee /lib/systemd/system/php${version}-fpm-xdebug.service > /dev/null
