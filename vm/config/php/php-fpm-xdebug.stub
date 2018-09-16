@@ -6,7 +6,7 @@ error_log = /var/log/php{version}-fpm-xdebug.log
 user = www-data
 group = www-data
 
-listen = /run/php/php7.1-fpm-xdebug.sock
+listen = /run/php/php{version}-fpm-xdebug.sock
 
 listen.owner = www-data
 listen.group = www-data

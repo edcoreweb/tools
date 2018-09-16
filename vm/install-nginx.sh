@@ -18,11 +18,11 @@ sudo mkdir /etc/nginx/custom
 
 sudo cp ./config/nginx/index.conf /etc/nginx/conf.d
 sudo cp ./config/nginx/xdebug.conf /etc/nginx/conf.d
-sudo cp ./config/nginx/default-ssl.conf /etc/nginx/custom
-sudo cp ./config/nginx/default-static.conf /etc/nginx/custom
-sudo cp ./config/nginx/default-php.conf /etc/nginx/custom
 sudo cp ./config/nginx/detect-php.conf /etc/nginx/custom
-sudo cp ./config/nginx/default-security.conf /etc/nginx/custom
+sudo cp ./config/nginx/default-ssl.conf /etc/nginx/custom/ssl.conf
+sudo cp ./config/nginx/default-static.conf /etc/nginx/custom/static.conf
+sudo cp ./config/nginx/default-php.conf /etc/nginx/custom/php.conf
+sudo cp ./config/nginx/default-security.conf /etc/nginx/custom/security.conf
 
 # Create the upstreams
 sudo touch /etc/nginx/conf.d/upstream.conf
