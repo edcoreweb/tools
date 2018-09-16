@@ -25,10 +25,10 @@ sudo cp ./config/nginx/detect-php.conf /etc/nginx/custom
 sudo cp ./config/nginx/default-security.conf /etc/nginx/custom
 
 # Create the upstreams
+sudo touch /etc/nginx/conf.d/upstream.conf
 for version in "${PHP_VERSIONS[@]}"
 do
-    sudo sed "s/{version}/${version}/g" ./config/nginx/upstream.stub >> /etc/nginx/conf.d/upstream.conf
-    sudo sed -i -e '$a\' /etc/nginx/conf.d/upstream.conf
+    sed "s/{version}/${version}/g" ./config/nginx/upstream.stub | sudo tee -a /etc/nginx/conf.d/upstream.conf > /dev/null
 done
 
 # Remove default site and create new one
@@ -40,7 +40,7 @@ sudo cp ./config/nginx/default.conf /etc/nginx/sites-available/default
 sudo mkdir "${WEB_ROOT}/vhosts"
 
 # Ensure web root is under correct ownership
-sudo chown "{$USER}":"{$USER}" "${WEB_ROOT}/vhosts"
+sudo chown $USER:$USER "${WEB_ROOT}/vhosts"
 sudo chmod 0755 "${WEB_ROOT}/vhosts"
 
 # Enable default config

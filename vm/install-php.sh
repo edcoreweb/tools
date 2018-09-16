@@ -46,18 +46,19 @@ for version in "${PHP_VERSIONS[@]}"
 do
     sudo rm /etc/php/${version}/fpm/pool.d/www.conf
     sudo cp ./config/php/www.conf /etc/php/${version}/fpm/pool.d
-    sudo sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug.stub > /etc/php/${version}/fpm/php-fpm-xdebug.conf
-    sudo sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug-service.stub > /lib/systemd/system/${version}-fpm-xdebug.service
+    sudo touch /etc/php/${version}/fpm/php-fpm-xdebug.conf /lib/systemd/system/${version}-fpm-xdebug.service
+    sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug.stub | sudo tee /etc/php/${version}/fpm/php-fpm-xdebug.conf > /dev/null
+    sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug-service.stub | sudo tee /lib/systemd/system/${version}-fpm-xdebug.service > /dev/null
 done
 
 # Install custom config
 for version in "${PHP_VERSIONS[@]}"
 do
-    cp ./config/php/custom.ini /etc/php/${version}/mods-available
+    sudo cp ./config/php/custom.ini /etc/php/${version}/mods-available
 done
 
 # Enable custom config
-phpenmod -v ALL -s ALL custom
+sudo phpenmod -v ALL -s ALL custom
 
 # Ensure session dir owned by same user as php
 sudo chown -R www-data:www-data /var/lib/php/sessions
