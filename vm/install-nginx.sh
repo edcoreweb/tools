@@ -7,6 +7,11 @@ PHP_VERSIONS=( "5.6" "7.1" "7.2" )
 sudo add-apt-repository ppa:nginx/development -y
 sudo apt-get install nginx -y
 
+# Copy default ssl certificates
+[ ! -d "/etc/ssl/custom" ] && \
+sudo mkdir /etc/ssl/custom
+sudo cp ./config/ssl/* /etc/ssl/custom
+
 # Copy default configuration files
 [ ! -d "/etc/nginx/custom" ] && \
 sudo mkdir /etc/nginx/custom
