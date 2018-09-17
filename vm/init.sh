@@ -22,4 +22,4 @@ sudo apt-get install -y ntpdate
 sudo ntpdate pool.ntp.org
 
 # Install general tools
-sudo apt-get install -y pwgen unzip net-tools curl tar git apt-transport-https ca-certificates software-properties-common wget gnupg vim nfs-common
+sudo apt-get install -y pwgen unzip net-tools curl tar git apt-transport-https ca-certificates software-properties-common wget gnupg vim nfs-common ifupdown 
