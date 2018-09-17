@@ -7,9 +7,9 @@ user = www-data
 group = www-data
 
 listen = /run/php/php{version}-fpm-xdebug.sock
-
 listen.owner = www-data
 listen.group = www-data
+catch_workers_output = yes
 
 pm = ondemand
 pm.max_children = 50

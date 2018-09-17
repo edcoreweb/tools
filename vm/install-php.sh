@@ -50,7 +50,7 @@ do
     sudo touch /etc/php/${version}/fpm/php-fpm-xdebug.conf /lib/systemd/system/${version}-fpm-xdebug.service
     sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug.stub | sudo tee /etc/php/${version}/fpm/php-fpm-xdebug.conf > /dev/null
     sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug-service.stub | sudo tee /lib/systemd/system/php${version}-fpm-xdebug.service > /dev/null
-    sudo ln -s /lib/systemd/system/php${version}-fpm-xdebug.service /etc/systemd/system/php${version}-fpm-xdebug.service
+    sudo systemctl enable php${version}-fpm-xdebug
 done
 
 # Install custom config
@@ -61,6 +61,12 @@ done
 
 # Enable custom config
 sudo phpenmod -v ALL -s ALL custom
+
+# Ensure php and xdebug log files exists and have the right perms
+sudo touch /var/log/php.log
+sudo chown www-data:www-data /var/log/php.log
+mkdir -p /var/log/xdebug/profiler
+sudo chown -R www-data:www-data /var/log/xdebug
 
 # Ensure session dir owned by same user as php
 sudo chown -R www-data:www-data /var/lib/php/sessions

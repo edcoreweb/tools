@@ -28,3 +28,4 @@ WantedBy=multi-user.target
 EOF
 
 sudo service mailhog start
+sudo systemctl enable mailhog
