@@ -46,10 +46,11 @@ for version in "${PHP_VERSIONS[@]}"
 do
     sudo rm /etc/php/${version}/fpm/pool.d/www.conf
     sed "s/{version}/${version}/g" ./config/php/www.stub | sudo tee /etc/php/${version}/fpm/pool.d/www.conf > /dev/null
-
+    # Create xdebug version of the fpm manager and auto start it
     sudo touch /etc/php/${version}/fpm/php-fpm-xdebug.conf /lib/systemd/system/${version}-fpm-xdebug.service
     sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug.stub | sudo tee /etc/php/${version}/fpm/php-fpm-xdebug.conf > /dev/null
     sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug-service.stub | sudo tee /lib/systemd/system/php${version}-fpm-xdebug.service > /dev/null
+    sudo ln -s /lib/systemd/system/php${version}-fpm-xdebug.service /etc/systemd/system/php${version}-fpm-xdebug.service
 done
 
 # Install custom config
