@@ -9,11 +9,11 @@ sudo apt-get install -y mysql-server
 
 # Cleanup
 sudo mysql -u root <<EOF
+CREATE USER 'root'@'%' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE user = 'root';
-DELETE FROM mysql.user WHERE user = '';
-DELETE FROM mysql.user WHERE user = 'root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DELETE FROM mysql.user WHERE user = 'root' AND host NOT IN ('localhost', '127.0.0.1', '::1', '%');
 DROP DATABASE IF EXISTS test;
-DELETE FROM mysql.db WHERE db = 'test' OR db = 'test\\_%';
 FLUSH PRIVILEGES;
 EOF
 
