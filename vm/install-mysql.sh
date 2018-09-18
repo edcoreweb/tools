@@ -18,6 +18,6 @@ FLUSH PRIVILEGES;
 EOF
 
 # Configure with priority
-sudo cp ./config/mysql/custom.cnf /etc/mysql/conf.d/mysqld_custom.cnf
+sudo cp ./config/mysql/custom.cnf /etc/mysql/mysql.conf.d/mysqld_custom.cnf
 
 sudo service mysql restart
