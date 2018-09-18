@@ -17,7 +17,7 @@ DELETE FROM mysql.db WHERE db = 'test' OR db = 'test\\_%';
 FLUSH PRIVILEGES;
 EOF
 
-# Configure
-sudo cp ./config/mysql/custom.cnf /etc/mysql/mysql.conf.d
+# Configure with priority
+sudo cp ./config/mysql/custom.cnf /etc/mysql/conf.d/mysqld_custom.cnf
 
 sudo service mysql restart
