@@ -65,7 +65,7 @@ sudo phpenmod -v ALL -s ALL custom
 # Ensure php and xdebug log files exists and have the right perms
 sudo touch /var/log/php.log
 sudo chown www-data:www-data /var/log/php.log
-mkdir -p /var/log/xdebug/profiler
+sudo mkdir -p /var/log/xdebug/profiler
 sudo chown -R www-data:www-data /var/log/xdebug
 
 # Ensure session dir owned by same user as php
