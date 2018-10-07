@@ -12,6 +12,9 @@ sudo apt-get install nginx -y
 sudo mkdir /etc/ssl/custom
 sudo cp ./config/ssl/* /etc/ssl/custom
 
+sudo cp ./config/ssl/ca.crt /usr/local/share/ca-certificates
+sudo update-ca-certificates
+
 # Copy default configuration files
 [ ! -d "/etc/nginx/custom" ] && \
 sudo mkdir /etc/nginx/custom
