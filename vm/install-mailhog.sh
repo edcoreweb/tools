@@ -21,7 +21,7 @@ cat << EOF | sudo tee /etc/systemd/system/mailhog.service > /dev/null
 Description=MailHog service
 
 [Service]
-ExecStart=/usr/local/bin/mailhog -api-bind-addr 127.0.0.1:8025 -ui-bind-addr 127.0.0.1:8025 -smtp-bind-addr 127.0.0.1:1025
+ExecStart=/usr/local/bin/mailhog -api-bind-addr 0.0.0.0:8025 -ui-bind-addr 0.0.0.0:8025 -smtp-bind-addr 0.0.0.0:1025
 
 [Install]
 WantedBy=multi-user.target
