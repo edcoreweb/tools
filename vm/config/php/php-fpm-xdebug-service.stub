@@ -6,7 +6,7 @@ After=network.target
 [Service]
 Type=notify
 PIDFile=/run/php/php{version}-fpm-xdebug.pid
-ExecStart=/usr/sbin/php-fpm{version} --nodaemonize --fpm-config /etc/php/{version}/fpm/php-fpm-xdebug.conf -d zend_extension=xdebug.so
+ExecStart=/usr/sbin/php-fpm{version} --nodaemonize --fpm-config /etc/php/{version}/fpm/php-fpm-xdebug.conf -d {options}
 ExecReload=/bin/kill -USR2 $MAINPID
 
 [Install]
