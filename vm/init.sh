@@ -23,3 +23,9 @@ sudo ntpdate pool.ntp.org
 
 # Install general tools
 sudo apt-get install -y pwgen unzip net-tools curl tar git apt-transport-https ca-certificates software-properties-common wget gnupg vim nfs-common ifupdown make 
+
+# Set the windows host
+IP=$(ip route get 8.8.8.8 | head -1 | awk '{print $7}')
+IP_PIECES=(${IP//./ })
+NEW_IP="${IP_PIECES[0]}.${IP_PIECES[1]}.${IP_PIECES[2]}.1"
+echo "${NEW_IP} _win_host" | sudo tee -a /etc/hosts > /dev/null
