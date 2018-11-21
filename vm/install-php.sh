@@ -19,7 +19,7 @@ do
         php${version}-cgi php${version}-fpm php${version}-pgsql php${version}-cli \
         php${version}-json php${version}-curl php${version}-gd php${version}-intl \
         php${version}-mysql php${version}-readline php${version}-mbstring php${version}-sqlite3 \
-        php${version}-zip php${version}-xml php${version}-opcache php${version}-soap
+        php${version}-zip php${version}-xml php${version}-opcache php${version}-soap php${version}-bcmath
 
     # Install mcrypt only for 5.6 and 7.1
     if [ $version = "5.6" ] || [ $version = "7.0" ] || [ $version = "7.1" ]
