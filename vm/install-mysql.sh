@@ -12,7 +12,7 @@ sudo mysql -u root <<EOF
 CREATE USER 'root'@'%' IDENTIFIED BY '';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE user = 'root';
-DELETE FROM mysql.user WHERE user = 'root' AND host NOT IN ('localhost', '127.0.0.1', '::1', '%');
+DELETE FROM mysql.user WHERE user = 'root' AND host NOT IN ('%');
 DROP DATABASE IF EXISTS test;
 FLUSH PRIVILEGES;
 EOF
