@@ -24,3 +24,16 @@
 - `./ubuntu-18-04-lemp.sh`
 
 You can follow the progress by tailing the provisioning log `tail -f tools/vm/provisioning.log`
+
+### 6. Install certificates
+
+- download and install `vm/config/ssl/ca.crt`
+- download and install `vm/config/ssl/local.ro.crt`
+
+Install the certificates in the windows trusted store.
+
+### 7. Mount the nfs share
+
+- use [this nfs utility](https://www.hanewin.net/nfs-e.htm)
+- export your share `d:\vhosts -name:vhosts -maproot:0`
+- add a fstab entry `LOCAL_WIN_IP:/vhosts /var/www/vhosts nfs rw,rsize=32768,wsize=32768,async,timeo=14,nolock,vers=3`
