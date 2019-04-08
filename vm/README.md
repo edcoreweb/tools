@@ -1,7 +1,7 @@
 # Installation
 
 ### 1. Get Ubuntu 18.04
-[Download the server version](https://www.ubuntu.com/download/server/thank-you?version=18.04.1.0&architecture=amd64)
+[Download the server version](https://www.ubuntu.com/download/server/thank-you?version=18.04.2&architecture=amd64)
 
 ### 2. Create a vm and install it
 
