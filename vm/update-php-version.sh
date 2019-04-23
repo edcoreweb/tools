@@ -15,7 +15,11 @@ if [[ ! " ${PHP_VERSIONS[@]} " =~ " ${version} " ]]; then
     exit 1
 fi
 
-echo "Installing PHP ${version}..."
+echo "Updating PHP ${version}..."
+
+# Stop services
+sudo service php${version}-fpm stop
+sudo service php${version}-fpm-xdebug stop
 
 # Install PHP version
 sudo apt-get -y install php${version} php${version}-common \
@@ -33,25 +37,6 @@ fi
 # Version independent extensions
 sudo apt-get -y install php-memcached php-mongodb php-memcache php-imagick php-xdebug php-redis
 
-# Disable xdebug for all versions
-sudo phpdismod -v ${version} -s ALL xdebug
-
-# Configure fpm php daemon with two pools w\ xdebug
-sudo rm /etc/php/${version}/fpm/pool.d/www.conf
-sed "s/{version}/${version}/g" ./config/php/www.stub | sudo tee /etc/php/${version}/fpm/pool.d/www.conf > /dev/null
-
-# Create xdebug version of the fpm manager and auto start it
-sudo touch /etc/php/${version}/fpm/php-fpm-xdebug.conf /lib/systemd/system/php${version}-fpm-xdebug.service
-sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug.stub | sudo tee /etc/php/${version}/fpm/php-fpm-xdebug.conf > /dev/null
-sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug-service.stub | sudo tee /lib/systemd/system/php${version}-fpm-xdebug.service > /dev/null
-sudo systemctl enable php${version}-fpm-xdebug
-
-# Install custom config
-sudo cp ./config/php/custom.ini /etc/php/${version}/mods-available
-
-# Enable custom config
-sudo phpenmod -v ${version} -s ALL custom
-
 # Restart services
-sudo service php${version}-fpm restart
-sudo service php${version}-fpm-xdebug restart
+sudo service php${version}-fpm start
+sudo service php${version}-fpm-xdebug start

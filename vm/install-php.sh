@@ -4,8 +4,8 @@
 # PHP_VERSIONS: "5.6" "7.0" "7.1" "7.2" "7.3"
 # PHP_LIB_FOLDERS: "20131226" "20151012" "20160303" "20170718" "20180731"
 
-PHP_VERSIONS=( "5.6" "7.1" "7.2" "7.3" )
-PHP_LIB_FOLDERS=( "20131226" "20160303" "20170718" "20180731" )
+PHP_VERSIONS=( "5.6" "7.2" "7.3" )
+PHP_LIB_FOLDERS=( "20131226" "20170718" "20180731" )
 
 # Add php repos
 sudo add-apt-repository ppa:ondrej/php -y
