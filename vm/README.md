@@ -38,3 +38,8 @@ Install the certificates in the windows trusted store.
 - configure it [as follows](http://prntscr.com/mao144) 
 - export your share `d:\vhosts -name:vhosts -maproot:0` [like this](http://prntscr.com/mao22s)
 - add a fstab entry `LOCAL_WIN_IP:/vhosts /var/www/vhosts nfs rw,rsize=32768,wsize=32768,async,timeo=14,nolock,vers=3`
+
+### 8. Extra
+
+- install additional supported PHP version `install-php-version.sh 7.1`
+- update existing PHP version `update-php-version.sh 7.1`
