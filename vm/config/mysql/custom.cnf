@@ -31,7 +31,7 @@ max_connections                 = 100
 #
 query_cache_limit   = 2M
 query_cache_size    = 8M
-query_cache_type    = 1
+query_cache_type    = 0
 
 # Please do not expire my passwords...
 default_password_lifetime = 0
