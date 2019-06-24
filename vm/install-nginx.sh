@@ -28,6 +28,7 @@ sudo cp ./config/nginx/default-ssl.conf /etc/nginx/custom/ssl.conf
 sudo cp ./config/nginx/default-static.conf /etc/nginx/custom/static.conf
 sudo cp ./config/nginx/default-php.conf /etc/nginx/custom/php.conf
 sudo cp ./config/nginx/default-security.conf /etc/nginx/custom/security.conf
+sudo cp ./config/nginx/default-cors.conf /etc/nginx/custom/cors.conf
 
 # Create the upstreams
 sudo touch /etc/nginx/conf.d/upstream.conf
