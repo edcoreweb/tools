@@ -23,7 +23,8 @@ sudo cp ./config/nginx/index.conf /etc/nginx/conf.d
 sudo cp ./config/nginx/gzip.conf /etc/nginx/conf.d
 sudo cp ./config/nginx/uploads.conf /etc/nginx/conf.d
 sudo cp ./config/nginx/xdebug.conf /etc/nginx/conf.d
-sudo cp ./config/nginx/custom/php.conf /etc/nginx/custom
+
+sudo cp ./config/nginx/custom/detect-php.conf /etc/nginx/custom/detect-php.conf
 sudo cp ./config/nginx/custom/ssl.conf /etc/nginx/custom/ssl.conf
 sudo cp ./config/nginx/custom/static.conf /etc/nginx/custom/static.conf
 sudo cp ./config/nginx/custom/php.conf /etc/nginx/custom/php.conf
@@ -37,11 +38,19 @@ do
     sed "s/{version}/${version}/g" ./config/nginx/upstream.stub | sudo tee -a /etc/nginx/conf.d/upstream.conf > /dev/null
 done
 
-# Remove default site and create new one
-sudo rm /etc/nginx/sites-enabled/default
-sudo cp ./config/nginx/default.conf /etc/nginx/sites-available/default
-sudo cp ./config/nginx/search.conf /etc/nginx/sites-available/search
-sudo cp ./config/nginx/mail.conf /etc/nginx/sites-available/mail
+# Remove default site
+sudo rm -f /etc/nginx/sites-available/default
+sudo rm -f /etc/nginx/sites-enabled/default
+
+# Copy the new ones
+sudo cp ./config/nginx/sites/default.conf /etc/nginx/sites-available/default
+sudo cp ./config/nginx/sites/search.conf /etc/nginx/sites-available/search
+sudo cp ./config/nginx/sites/mail.conf /etc/nginx/sites-available/mail
+
+# Enable default config
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/search /etc/nginx/sites-enabled/search
+sudo ln -s /etc/nginx/sites-available/mail /etc/nginx/sites-enabled/mail
 
 # Make web root
 [ ! -d "${WEB_ROOT}/vhosts" ] && \
@@ -50,12 +59,6 @@ sudo mkdir "${WEB_ROOT}/vhosts"
 # Ensure web root is under correct ownership
 sudo chown $USER:$USER "${WEB_ROOT}/vhosts"
 sudo chmod 0755 "${WEB_ROOT}/vhosts"
-
-# Enable default config
-[ ! -f "/etc/nginx/sites-enabled/default" ] && \
-sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo ln -s /etc/nginx/sites-available/search /etc/nginx/sites-enabled/search
-sudo ln -s /etc/nginx/sites-available/mail /etc/nginx/sites-enabled/mail
 
 # Restart
 sudo service nginx restart
