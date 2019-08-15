@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install Java 8
-sudo apt install openjdk-8-jdk
+sudo apt-get -y install openjdk-8-jdk
 
 # Install Elasticsearch
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
