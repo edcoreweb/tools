@@ -15,18 +15,11 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -q update
 sudo apt-get -y install memcached
 sudo sed -i -r 's/^-m[ \t]+64[ \t]*$/-m 96/' /etc/memcached.conf
 
-# Get certs for curl
-sudo curl -s -o /etc/php/cacert.pem  https://curl.haxx.se/ca/cacert.pem
-
 # Ensure php and xdebug log files exists and have the right perms
 sudo touch /var/log/php.log
 sudo chown www-data:www-data /var/log/php.log
 sudo mkdir -p /var/log/xdebug/profiler
 sudo chown -R www-data:www-data /var/log/xdebug
-
-# Ensure session dir owned by same user as php
-sudo chown -R www-data:www-data /var/lib/php/sessions
-sudo chmod -R 0755 /var/lib/php/sessions/
 
 # Install PHP
 for version in "${PHP_VERSIONS[@]}"
@@ -34,6 +27,13 @@ do
     # Install php version
     ./install-php-version.sh ${version}
 done
+
+# Ensure session dir owned by same user as php
+sudo chown -R www-data:www-data /var/lib/php/sessions
+sudo chmod -R 0755 /var/lib/php/sessions/
+
+# Get certs for curl
+sudo curl -s -o /etc/php/cacert.pem  https://curl.haxx.se/ca/cacert.pem
 
 # Install Composer
 curl -s https://getcomposer.org/installer | php
