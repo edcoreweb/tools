@@ -31,7 +31,7 @@ then
 fi
 
 # Version independent extensions
-sudo apt-get -y install php-memcached php-mongodb php-memcache php-imagick php-xdebug php-redis
+sudo apt-get -y install php-memcached php-mongodb php-memcache php-imagick php-xdebug php-redis php-igbinary php-msgpack
 
 # Disable xdebug for all versions
 sudo phpdismod -v ${version} -s ALL xdebug
