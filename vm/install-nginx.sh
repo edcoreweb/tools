@@ -22,7 +22,6 @@ sudo mkdir /etc/nginx/custom
 sudo cp ./config/nginx/index.conf /etc/nginx/conf.d
 sudo cp ./config/nginx/gzip.conf /etc/nginx/conf.d
 sudo cp ./config/nginx/uploads.conf /etc/nginx/conf.d
-sudo cp ./config/nginx/xdebug.conf /etc/nginx/conf.d
 
 sudo cp ./config/nginx/custom/detect-php.conf /etc/nginx/custom/detect-php.conf
 sudo cp ./config/nginx/custom/ssl.conf /etc/nginx/custom/ssl.conf
