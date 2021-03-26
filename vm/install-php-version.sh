@@ -22,7 +22,8 @@ sudo apt-get -y install php${version} php${version}-common \
 php${version}-cgi php${version}-fpm php${version}-pgsql php${version}-cli \
 php${version}-curl php${version}-gd php${version}-intl \
 php${version}-mysql php${version}-readline php${version}-mbstring php${version}-sqlite3 \
-php${version}-zip php${version}-xml php${version}-opcache php${version}-soap php${version}-bcmath
+php${version}-zip php${version}-xml php${version}-opcache php${version}-soap php${version}-bcmath \
+php${version}-xdebug
 
 # 8.0 and greater include json already
 if [[ $version < "8.0" ]]
@@ -37,7 +38,7 @@ then
 fi
 
 # Version independent extensions
-sudo apt-get -y install php-memcached php-mongodb php-memcache php-imagick php-xdebug php-redis php-igbinary php-msgpack
+sudo apt-get -y install php-memcached php-mongodb php-memcache php-imagick php-redis php-igbinary php-msgpack
 
 # Disable xdebug for all versions
 sudo phpdismod -v ${version} -s ALL xdebug
