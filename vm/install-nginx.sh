@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WEB_ROOT="/var/www"
-PHP_VERSIONS=( "5.6" "7.2" "7.3" "7.4" )
+PHP_VERSIONS=( "5.6" "7.2" "7.4" "8.0" )
 
 # Install nginx
 sudo add-apt-repository ppa:nginx/development -y
