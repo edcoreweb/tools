@@ -23,7 +23,7 @@
 - `cd vm`
 - `./ubuntu-18-04-lemp.sh`
 
-You can follow the progress by tailing the provisioning log `tail -f tools/vm/provisioning.log`
+You can follow the progress by tailing the provisioning log `tail -f tools/vm/provision.log`
 
 ### 6. Install certificates
 
