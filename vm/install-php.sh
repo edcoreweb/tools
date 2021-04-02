@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # All available options
-# PHP_VERSIONS: "5.6" "7.0" "7.1" "7.2" "7.3" "7.4"
-# PHP_LIB_FOLDERS: "20131226" "20151012" "20160303" "20170718" "20180731" "20190902"
+# PHP_VERSIONS: "5.6" "7.0" "7.1" "7.2" "7.3" "7.4" "8.0"
+# PHP_LIB_FOLDERS: "20131226" "20151012" "20160303" "20170718" "20180731" "20190902" "20200930"
 
-PHP_VERSIONS=( "5.6" "7.2" "7.3" "7.4" )
-PHP_LIB_FOLDERS=( "20131226" "20170718" "20180731" "20190902" )
+PHP_VERSIONS=( "5.6" "7.2" "7.4" "8.0" )
+PHP_LIB_FOLDERS=( "20131226" "20170718" "20190902" "20200930" )
 
 # Add php repos
 sudo add-apt-repository ppa:ondrej/php -y
