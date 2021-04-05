@@ -1,7 +1,9 @@
 #!/bin/bash
 
+set -eo pipefail
+
 # This should only run once
-sudo systemctl disable provisioning.service
+sudo rm -f /etc/systemd/system/multi-user.target.wants/provisioning.service
 sudo rm -f /etc/systemd/system/provisioning.service
 
 start_seconds="$(date +%s)"
