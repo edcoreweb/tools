@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # This should only run once
+sudo systemctl disable provisioning.service
 sudo rm -f /etc/systemd/system/provisioning.service
 
 start_seconds="$(date +%s)"
