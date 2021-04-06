@@ -9,13 +9,13 @@ apt-cache policy docker-ce
 sudo apt-get install -y docker-ce
 
 # non-sudo permissions
-sudo usermod -aG docker $USER
+sudo usermod -aG docker fps
 
-[ ! -d "/home/$USER/.docker" ] && \
-sudo mkdir "/home/$USER/.docker"
+[ ! -d "/home/fps/.docker" ] && \
+sudo mkdir "/home/fps/.docker"
 
-sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-sudo chmod g+rwx "/home/$USER/.docker" -R
+sudo chown fps:fps /home/fps/.docker -R
+sudo chmod g+rwx /home/fps/.docker -R
 
 # Install docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
