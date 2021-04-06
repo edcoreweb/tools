@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+dir="$(dirname $0)"
+
 # All available options
 # PHP_VERSIONS: "5.6" "7.0" "7.1" "7.2" "7.3" "7.4" "8.0"
 # PHP_LIB_FOLDERS: "20131226" "20151012" "20160303" "20170718" "20180731" "20190902" "20200930"
@@ -25,7 +27,7 @@ sudo chown -R www-data:www-data /var/log/xdebug
 for version in "${PHP_VERSIONS[@]}"
 do
     # Install php version
-    ./install-php-version.sh ${version}
+    $dir/install-php-version.sh ${version}
 done
 
 # Ensure session dir owned by same user as php
