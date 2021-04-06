@@ -5,17 +5,18 @@ sudo rm -f /etc/systemd/system/multi-user.target.wants/provisioning.service
 sudo rm -f /etc/systemd/system/provisioning.service
 
 start_seconds="$(date +%s)"
+dir="$(dirname $0)"
 
-./init.sh
-./install-mysql.sh
-./install-mailhog.sh
-./install-php.sh
-./install-nginx.sh
-./install-elasticsearch.sh
-./install-node.sh
-./install-redis.sh
-./install-docker.sh
-./finish.sh
+$dir/init.sh
+$dir/install-mysql.sh
+$dir/install-mailhog.sh
+$dir/install-php.sh
+$dir/install-nginx.sh
+$dir/install-elasticsearch.sh
+$dir/install-node.sh
+$dir/install-redis.sh
+$dir/install-docker.sh
+$dir/finish.sh
 
 end_seconds="$(date +%s)"
 echo "---------------------------------------------------------------------"
