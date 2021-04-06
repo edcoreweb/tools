@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-#enable firewall
-#sudo ufw default deny incoming
-#sudo ufw allow ssh
-#sudo ufw allow http
-#sudo ufw allow https
-#echo y | sudo ufw enable
+# Mount from NFS
+cat <<EOF >> .nanorc
+_win_host:/vhosts /var/www/vhosts nfs rw,rsize=32768,wsize=32768,async,timeo=5,nolock,vers=3,noatime,bg
+EOF
