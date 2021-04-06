@@ -59,7 +59,7 @@ sudo ln -s /etc/nginx/sites-available/mail /etc/nginx/sites-enabled/mail
 sudo mkdir "${WEB_ROOT}/vhosts"
 
 # Ensure web root is under correct ownership
-sudo chown $USER:$USER "${WEB_ROOT}/vhosts"
+sudo chown fps:fps "${WEB_ROOT}/vhosts"
 sudo chmod 0755 "${WEB_ROOT}/vhosts"
 
 # Restart
