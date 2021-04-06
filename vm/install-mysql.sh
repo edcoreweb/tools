@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+dir="$(dirname $0)"
+
 MYSQL_ROOT_PASSWORD=""
 
 # Install MySQL 5.7
@@ -18,6 +20,6 @@ FLUSH PRIVILEGES;
 EOF
 
 # Configure with priority
-sudo cp ./config/mysql/custom.cnf /etc/mysql/mysql.conf.d/mysqld_custom.cnf
+sudo cp $dir/config/mysql/custom.cnf /etc/mysql/mysql.conf.d/mysqld_custom.cnf
 
 sudo service mysql restart
