@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+dir="$(dirname $0)"
+
 # All available options
 # PHP_VERSIONS: "5.6" "7.0" "7.1" "7.2" "7.3" "7.4" "8.0"
 # PHP_LIB_FOLDERS: "20131226" "20151012" "20160303" "20170718" "20180731" "20190902" "20200930"
@@ -45,16 +47,16 @@ sudo phpdismod -v ${version} -s ALL xdebug
 
 # Configure fpm php daemon with two pools w\ xdebug
 sudo rm /etc/php/${version}/fpm/pool.d/www.conf
-sed "s/{version}/${version}/g" ./config/php/www.stub | sudo tee /etc/php/${version}/fpm/pool.d/www.conf > /dev/null
+sed "s/{version}/${version}/g" $dir/config/php/www.stub | sudo tee /etc/php/${version}/fpm/pool.d/www.conf > /dev/null
 
 # Create xdebug version of the fpm manager and auto start it
 sudo touch /etc/php/${version}/fpm/php-fpm-xdebug.conf /lib/systemd/system/php${version}-fpm-xdebug.service
-sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug.stub | sudo tee /etc/php/${version}/fpm/php-fpm-xdebug.conf > /dev/null
-sed "s/{version}/${version}/g" ./config/php/php-fpm-xdebug-service.stub | sudo tee /lib/systemd/system/php${version}-fpm-xdebug.service > /dev/null
+sed "s/{version}/${version}/g" $dir/config/php/php-fpm-xdebug.stub | sudo tee /etc/php/${version}/fpm/php-fpm-xdebug.conf > /dev/null
+sed "s/{version}/${version}/g" $dir/config/php/php-fpm-xdebug-service.stub | sudo tee /lib/systemd/system/php${version}-fpm-xdebug.service > /dev/null
 sudo systemctl enable php${version}-fpm-xdebug
 
 # Install custom config
-sudo cp ./config/php/custom.ini /etc/php/${version}/mods-available
+sudo cp $dir/config/php/custom.ini /etc/php/${version}/mods-available
 
 # Enable custom config
 sudo phpenmod -v ${version} -s ALL custom
