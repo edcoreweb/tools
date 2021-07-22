@@ -248,7 +248,7 @@ basicConstraints = CA:true
 # nsCertType = sslCA, emailCA
 
 # Include email address in subject alt name: another PKIX recommendation
-subjectAltName=DNS:*.local.revenew.nl, DNS:*.local.dev, DNS:*.local.com, DNS:*.dev, DNS:192.168.1.2
+subjectAltName=DNS:*.local.test
 # Copy issuer details
 # issuerAltName=issuer:copy
 
