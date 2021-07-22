@@ -24,7 +24,7 @@ sudo vim /etc/ssl/openssl.cnf
 Modify the following lines under **[v3_ca]**
 ```
 # Include email address in subject alt name: another PKIX recommendation
-subjectAltName=DNS:*.local.revenew.nl, DNS:*.local.dev, DNS:*.local.com, DNS:*.dev, DNS:192.168.1.2
+subjectAltName=DNS:*.local.test
 ```  
 
 ### Generate the root authority (this is required to sign the other certificates and will be added to the trusted root)
