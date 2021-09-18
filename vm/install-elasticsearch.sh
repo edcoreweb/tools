@@ -13,7 +13,7 @@ sudo apt-get -y install elasticsearch
 sudo sed -i "s/#cluster.name: my-application/cluster.name: local/" /etc/elasticsearch/elasticsearch.yml
 
 # Start Elasticsearch on boot
-sudo update-rc.d elasticsearch defaults 95 10
+#sudo update-rc.d elasticsearch defaults 95 10
 
 # Enable Start Elasticsearch
 sudo systemctl enable elasticsearch.service
