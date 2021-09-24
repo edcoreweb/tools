@@ -35,7 +35,7 @@ sudo chown -R www-data:www-data /var/lib/php/sessions
 sudo chmod -R 0755 /var/lib/php/sessions/
 
 # Get certs for curl
-sudo curl -s -o /etc/php/cacert.pem  https://curl.haxx.se/ca/cacert.pem
+sudo curl -s -o /etc/php/cacert.pem  https://curl.se/ca/cacert.pem
 
 # Install Composer
 curl -s https://getcomposer.org/installer | php
