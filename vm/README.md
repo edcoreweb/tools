@@ -28,7 +28,7 @@ You can follow the progress by tailing the provisioning log `tail -f tools/vm/pr
 ### 6. Install certificates
 
 - download and install `vm/config/ssl/ca.crt`
-- download and install `vm/config/ssl/local.ro.crt`
+- download and install `vm/config/ssl/local.test.crt`
 
 Install the certificates in the windows trusted store.
 
