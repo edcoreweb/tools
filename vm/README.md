@@ -1,7 +1,7 @@
 # Installation
 
 ### 1. Get Ubuntu 18.04
-[Download the server version](https://www.ubuntu.com/download/server/thank-you?version=18.04.2&architecture=amd64)
+[Download the server version](https://mirror.efect.ro/ubuntu/releases/20.04.3/ubuntu-20.04.3-live-server-amd64.iso)
 
 ### 2. Create a vm and install it
 
@@ -21,7 +21,7 @@
 ### 5. Run the script
 
 - `cd vm`
-- `./ubuntu-18-04-lemp.sh`
+- `./ubuntu-20-04-lemp.sh`
 
 You can follow the progress by tailing the provisioning log `tail -f tools/vm/provision.log`
 
@@ -41,5 +41,5 @@ Install the certificates in the windows trusted store.
 
 ### 8. Extra
 
-- install additional supported PHP version `install-php-version.sh 7.1`
-- update existing PHP version `update-php-version.sh 7.1`
+- install additional supported PHP version `install-php-version.sh 8.1`
+- update existing PHP version `update-php-version.sh 8.1`
