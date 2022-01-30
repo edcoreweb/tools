@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+dir="$(dirname $0)"
+
 # All available options
 # PHP_VERSIONS: "5.6" "7.0" "7.1" "7.2" "7.3" "7.4" "8.0"
 # PHP_LIB_FOLDERS: "20131226" "20151012" "20160303" "20170718" "20180731" "20190902" "20200930"
@@ -8,6 +10,7 @@ PHP_VERSIONS=( "5.6" "7.0" "7.1" "7.2" "7.3" "7.4" "8.0" "8.1" )
 PHP_LIB_FOLDERS=( "20131226" "20151012" "20160303" "20170718" "20180731" "20190902" "20200930" )
 
 version=$1
+versionNoDots=${version//./}
 
 # Make sure we can install this version
 if [[ ! " ${PHP_VERSIONS[@]} " =~ " ${version} " ]]; then
@@ -46,3 +49,21 @@ sudo apt-get -y install php-memcached php-mongodb php-memcache php-imagick php-x
 # Restart services
 sudo service php${version}-fpm start
 sudo service php${version}-fpm-xdebug start
+
+# Add upstream if it doesn't exist
+upstreamExists=$(cat /etc/nginx/conf.d/upstream.conf | grep -c "upstream php${version}-fpm")
+
+if [ $upstreamExists -eq 0 ]; then
+    sed "s/{version}/${version}/g" $dir/config/nginx/upstream.stub | sudo tee -a /etc/nginx/conf.d/upstream.conf > /dev/null
+fi
+
+# Add detect if it doesn't exist
+detectExists=$(cat /etc/nginx/custom/detect-php.conf | grep -c "/.php${versionNoDots}")
+detectContent="$(sed -e "s/{version}/${version}/g" -e "s/{versionNoDots}/${versionNoDots}/g" $dir/config/nginx/detect.stub)"
+
+if [ $detectExists -eq 0 ]; then
+    sudo sed -i '/^set $fastcgi_pass.*/i'"$(echo -e $detectContent)" /etc/nginx/custom/detect-php.conf
+fi
+
+# Restart nginx
+sudo service nginx restart
