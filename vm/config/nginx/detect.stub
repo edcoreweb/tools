@@ -1,0 +1,4 @@
+if ( -e "${document_root}/.php{versionNoDots}" ) {
+    set $php_version "{version}";
+}
+
