@@ -1,7 +1,7 @@
 # Installation
 
 ### 1. Get Ubuntu 20.04
-[Download the server version](https://mirror.efect.ro/ubuntu/releases/20.04.3/ubuntu-20.04.3-live-server-amd64.iso)
+[Download the server version](https://mirror.efect.ro/ubuntu/releases/focal/ubuntu-20.04.4-live-server-amd64.iso)
 
 ### 2. Create a vm and install it
 
