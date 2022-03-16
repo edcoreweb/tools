@@ -12,6 +12,10 @@ sudo apt-get -y install elasticsearch
 # Update configuration to use 'local' as the cluster
 sudo sed -i "s/#cluster.name: my-application/cluster.name: local/" /etc/elasticsearch/elasticsearch.yml
 
+# Limit memory usage
+sudo sed -i "s/## -Xms4g/-Xms512m/" /etc/elasticsearch/jvm.options
+sudo sed -i "s/## -Xmx4g/-Xmx512m/" /etc/elasticsearch/jvm.options
+
 # Enable Start Elasticsearch
 #sudo systemctl enable elasticsearch.service
 #sudo service elasticsearch start
