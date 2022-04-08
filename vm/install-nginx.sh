@@ -32,6 +32,7 @@ sudo cp $dir/config/nginx/custom/static.conf /etc/nginx/custom/static.conf
 sudo cp $dir/config/nginx/custom/php.conf /etc/nginx/custom/php.conf
 sudo cp $dir/config/nginx/custom/security.conf /etc/nginx/custom/security.conf
 sudo cp $dir/config/nginx/custom/cors.conf /etc/nginx/custom/cors.conf
+sudo cp $dir/config/nginx/custom/magento2.conf /etc/nginx/custom/magento2.conf
 
 # Create the upstreams
 sudo touch /etc/nginx/conf.d/upstream.conf
